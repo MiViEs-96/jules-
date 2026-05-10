@@ -2,10 +2,13 @@
 
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
+import PrivacyModal from "@/components/PrivacyModal";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -13,7 +16,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-vintage-paper/50">
       <Navbar />
 
       <section className="container mx-auto px-6 py-24">
@@ -24,7 +27,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <span className="text-xs uppercase tracking-[0.5em] mb-6 block opacity-60">Connect With Us</span>
+              <span className="text-xs uppercase tracking-[0.5em] mb-6 block opacity-60 text-vintage-green">Connect With Us</span>
               <h2 className="text-5xl md:text-7xl font-serif text-vintage-green mb-8 uppercase leading-none">
                 Start a Partnership.
               </h2>
@@ -34,12 +37,12 @@ export default function ContactPage() {
 
               <div className="space-y-8">
                 <div>
-                  <h4 className="text-xs uppercase tracking-widest font-bold mb-2">Direct Inquiry</h4>
-                  <p className="font-serif text-2xl text-vintage-green italic">test@krunshe.com</p>
+                  <h4 className="text-xs uppercase tracking-widest font-bold mb-2 text-vintage-green">Direct Inquiry</h4>
+                  <p className="font-serif text-2xl text-vintage-green italic border-b border-vintage-green/10 pb-2 inline-block">test@krunshe.com</p>
                 </div>
                 <div>
-                  <h4 className="text-xs uppercase tracking-widest font-bold mb-2">B2B Headquarters</h4>
-                  <p className="text-xs uppercase tracking-widest opacity-60 leading-loose">
+                  <h4 className="text-xs uppercase tracking-widest font-bold mb-2 text-vintage-green">B2B Headquarters</h4>
+                  <p className="text-xs uppercase tracking-widest opacity-60 leading-loose text-vintage-brown">
                     Milan, Italy<br/>
                     Pure Nature District
                   </p>
@@ -51,7 +54,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
-              className="bg-white/30 backdrop-blur-sm p-10 border border-vintage-green/10"
+              className="bg-vintage-beige/80 backdrop-blur-sm p-10 border-2 border-vintage-green/10 shadow-sm"
             >
               {submitted ? (
                 <div className="py-20 text-center">
@@ -73,44 +76,44 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="space-y-8">
                   <div className="grid grid-cols-2 gap-8">
                     <div className="space-y-2">
-                      <label className="text-[10px] uppercase font-bold tracking-widest opacity-60">Name</label>
+                      <label className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-vintage-green">Name</label>
                       <input
                         required
                         type="text"
-                        className="w-full bg-transparent border-b border-vintage-green/20 py-2 focus:border-vintage-green outline-none transition-colors font-serif italic"
+                        className="w-full bg-transparent border-b border-vintage-green/20 py-2 focus:border-vintage-green outline-none transition-colors font-serif italic text-vintage-green"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] uppercase font-bold tracking-widest opacity-60">Company</label>
+                      <label className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-vintage-green">Company</label>
                       <input
                         required
                         type="text"
-                        className="w-full bg-transparent border-b border-vintage-green/20 py-2 focus:border-vintage-green outline-none transition-colors font-serif italic"
+                        className="w-full bg-transparent border-b border-vintage-green/20 py-2 focus:border-vintage-green outline-none transition-colors font-serif italic text-vintage-green"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] uppercase font-bold tracking-widest opacity-60">Work Email</label>
+                    <label className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-vintage-green">Work Email</label>
                     <input
                       required
                       type="email"
-                      className="w-full bg-transparent border-b border-vintage-green/20 py-2 focus:border-vintage-green outline-none transition-colors font-serif italic"
+                      className="w-full bg-transparent border-b border-vintage-green/20 py-2 focus:border-vintage-green outline-none transition-colors font-serif italic text-vintage-green"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] uppercase font-bold tracking-widest opacity-60">Message</label>
+                    <label className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-vintage-green">Message</label>
                     <textarea
                       required
                       rows={4}
-                      className="w-full bg-transparent border-b border-vintage-green/20 py-2 focus:border-vintage-green outline-none transition-colors font-serif italic resize-none"
+                      className="w-full bg-transparent border-b border-vintage-green/20 py-2 focus:border-vintage-green outline-none transition-colors font-serif italic resize-none text-vintage-green"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full bg-vintage-green text-vintage-beige py-5 uppercase font-bold tracking-[0.2em] text-xs hover:bg-vintage-green-light transition-colors"
+                    className="w-full bg-vintage-green text-vintage-beige py-5 uppercase font-bold tracking-[0.2em] text-xs hover:bg-vintage-green-light transition-colors shadow-md"
                   >
                     Send Inquiry
                   </button>
@@ -124,9 +127,16 @@ export default function ContactPage() {
 
       <footer className="bg-vintage-paper py-20 border-t border-vintage-green/10">
         <div className="container mx-auto px-6 text-center">
+          <div className="flex justify-center gap-8 mb-8 text-[10px] font-bold uppercase tracking-widest text-vintage-brown/60">
+            <Link href="/" className="hover:text-vintage-green">Home</Link>
+            <Link href="/products" className="hover:text-vintage-green">Products</Link>
+            <Link href="/contact" className="hover:text-vintage-green">Contact</Link>
+            <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-vintage-green">Privacy</button>
+          </div>
           <p className="text-[10px] uppercase tracking-[0.3em] opacity-40">© 2024 Krunshe B2B. Established in Purity.</p>
         </div>
       </footer>
+      <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
     </main>
   );
 }

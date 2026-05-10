@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
+import Mascot from "@/components/Mascot";
+import BackgroundDecorations from "@/components/BackgroundDecorations";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -24,9 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${playfair.variable} ${montserrat.variable} antialiased`}>
+      <body className={`${playfair.variable} ${montserrat.variable} antialiased relative`}>
         <div className="paper-overlay" />
+        <BackgroundDecorations />
         {children}
+        <Mascot />
       </body>
     </html>
   );

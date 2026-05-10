@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import PrivacyModal from "@/components/PrivacyModal";
+import { useState } from "react";
 
 export default function Home() {
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   return (
     <main className="min-h-screen">
       <Navbar />
@@ -161,7 +164,7 @@ export default function Home() {
             <Link href="/" className="hover:text-vintage-green-light transition-colors">Home</Link>
             <Link href="/products" className="hover:text-vintage-green-light transition-colors">Products</Link>
             <Link href="/contact" className="hover:text-vintage-green-light transition-colors">Contact</Link>
-            <Link href="#" className="hover:text-vintage-green-light transition-colors">Privacy</Link>
+            <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-vintage-green-light transition-colors">Privacy</button>
           </div>
 
           <div className="max-w-md text-center mb-12">
@@ -173,6 +176,7 @@ export default function Home() {
           <p className="text-[9px] opacity-40 uppercase tracking-[0.3em]">© 2024 Krunshe B2B. Crafted for Health.</p>
         </div>
       </footer>
+      <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
     </main>
   );
 }

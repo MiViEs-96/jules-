@@ -7,25 +7,20 @@ import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const { scrollY } = useScroll();
-  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
-
-  useEffect(() => {
-    const updateScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", updateScroll);
-    updateScroll();
-    return () => window.removeEventListener("scroll", updateScroll);
-  }, []);
 
   const smoothScrollY = useSpring(scrollY, { damping: 20, stiffness: 100 });
 
   // For home, we do the full transition.
-  // For other pages, we start at the final state.
+  // For other pages, we stay in the shrunk state.
   const logoScale = useTransform(smoothScrollY, [0, 400], [isHome ? 2.5 : 1, 1]);
-  const logoY = useTransform(smoothScrollY, [0, 400], [isHome ? "0vh" : "-45vh", "-45vh"]);
+
+  // Adjusted logoY:
+  // On home, 0 scroll: "5vh" (centered)
+  // On home, 400 scroll: "0px" (top of navbar)
+  const logoY = useTransform(smoothScrollY, [0, 400], [isHome ? "5vh" : "0px", "0px"]);
+
   const navHeight = useTransform(smoothScrollY, [0, 400], [isHome ? "100vh" : "80px", "80px"]);
   const navBg = useTransform(
     smoothScrollY,
@@ -77,9 +72,8 @@ export default function Navbar() {
         />
       </motion.nav>
 
-      {/* Spacer for the hero transition - only on Home */}
-      {isHome && <div className="h-[100vh]" />}
-      {!isHome && <div className="h-[80px]" />}
+      {/* Spacer for the hero transition */}
+      <div style={{ height: isHome ? "100vh" : "80px" }} />
     </>
   );
 }

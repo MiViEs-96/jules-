@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --color-vintage-beige: #F5F5DC;
+  --color-vintage-paper: #E8E2D2;
+  --color-vintage-green: #2D4B32;
+  --color-vintage-green-light: #4A6E4F;
+  --color-vintage-brown: #4A3728;
+
+  --font-vintage-serif: "Playfair Display", serif;
+  --font-vintage-sans: "Montserrat", sans-serif;
+}
+
+:root {
+  --background: var(--color-vintage-paper);
+  --foreground: var(--color-vintage-brown);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-vintage-sans);
+  background-image: radial-gradient(#00000011 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-vintage-serif);
+  color: var(--color-vintage-green);
+}
+
+.paper-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+  background-image: url("https://www.transparenttextures.com/patterns/recycled-paper.png");
+}

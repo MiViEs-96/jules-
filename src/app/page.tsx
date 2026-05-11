@@ -13,7 +13,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Content - Motto */}
-      <section className="container mx-auto px-6 py-32 flex flex-col items-center text-center">
+      <section className="container mx-auto px-6 pt-48 pb-32 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

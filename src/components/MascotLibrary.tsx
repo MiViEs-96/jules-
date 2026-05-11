@@ -2,114 +2,157 @@
 
 import { motion } from "framer-motion";
 
+const AnimeFace = ({ eyeSize = 8, eyeX = 35, eyeY = 45, smileY = 60, smileW = 12 }) => (
+  <g>
+    {/* Eyes */}
+    <g>
+      <circle cx={eyeX} cy={eyeY} r={eyeSize} fill="black" />
+      <circle cx={eyeX + 2} cy={eyeY - 3} r={eyeSize * 0.4} fill="white" />
+      <circle cx={eyeX - 2} cy={eyeY + 3} r={eyeSize * 0.15} fill="white" />
+    </g>
+    <g>
+      <circle cx={100 - eyeX} cy={eyeY} r={eyeSize} fill="black" />
+      <circle cx={100 - eyeX + 2} cy={eyeY - 3} r={eyeSize * 0.4} fill="white" />
+      <circle cx={100 - eyeX - 2} cy={eyeY + 3} r={eyeSize * 0.15} fill="white" />
+    </g>
+    {/* Cheeks */}
+    <ellipse cx={eyeX - 10} cy={eyeY + 10} rx="6" ry="3" fill="#FFB6C1" opacity="0.6" />
+    <ellipse cx={110 - eyeX} cy={eyeY + 10} rx="6" ry="3" fill="#FFB6C1" opacity="0.6" />
+    {/* Smile */}
+    <path
+      d={`M${50 - smileW/2} ${smileY} Q50 ${smileY + 8} ${50 + smileW/2} ${smileY}`}
+      fill="none"
+      stroke="black"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+  </g>
+);
+
 export const MascotStrawberry = ({ className = "" }) => (
   <svg viewBox="0 0 100 100" className={`w-full h-full drop-shadow-xl ${className}`}>
     <defs>
-      <radialGradient id="berryGrad" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
-        <stop offset="0%" style={{ stopColor: "#FF4D4D" }} />
-        <stop offset="100%" style={{ stopColor: "#E31E24" }} />
+      <radialGradient id="berryGrad" cx="40%" cy="40%" r="60%">
+        <stop offset="0%" style={{ stopColor: "#FF5E5E" }} />
+        <stop offset="80%" style={{ stopColor: "#C11B1B" }} />
+        <stop offset="100%" style={{ stopColor: "#8B0000" }} />
       </radialGradient>
     </defs>
-    <path d="M50 90C70 90 85 65 85 45C85 25 70 10 50 10C30 10 15 25 15 45C15 65 30 90 50 90Z" fill="url(#berryGrad)" />
-    <path d="M35 15C40 5 60 5 65 15L50 25Z" fill="#2D4B32" />
-    <path d="M45 10C48 2 52 2 55 10L50 20Z" fill="#3D5B42" />
-    {[25, 40, 55, 70, 35, 50, 65, 45, 55].map((x, i) => (
-      <circle key={i} cx={x} cy={35 + (i % 3) * 15} r="1.2" fill="#FFD700" opacity="0.4" />
-    ))}
-    <g>
-      <circle cx="35" cy="45" r="9" fill="black" />
-      <circle cx="37" cy="42" r="3.5" fill="white" />
-      <circle cx="33" cy="48" r="1.5" fill="white" />
+    {/* Botanical Body */}
+    <path
+      d="M50 95C30 95 12 75 12 48C12 25 30 15 50 15C70 15 88 25 88 48C88 75 70 95 50 95Z"
+      fill="url(#berryGrad)"
+    />
+    {/* Detailed Leaves */}
+    <g fill="#2D4B32">
+      <path d="M50 20L35 5C40 2 45 2 50 10Z" />
+      <path d="M50 20L65 5C60 2 55 2 50 10Z" />
+      <path d="M50 20L25 12C30 8 40 8 50 15Z" />
+      <path d="M50 20L75 12C70 8 60 8 50 15Z" />
+      <path d="M50 25C50 15 50 10 50 0" stroke="#2D4B32" strokeWidth="2" fill="none" />
     </g>
-    <g>
-      <circle cx="65" cy="45" r="9" fill="black" />
-      <circle cx="67" cy="42" r="3.5" fill="white" />
-      <circle cx="63" cy="48" r="1.5" fill="white" />
+    {/* Seeds - Botanical pattern */}
+    <g fill="#FFD700" opacity="0.6">
+      {[
+        [30, 40], [50, 35], [70, 40],
+        [25, 55], [40, 50], [60, 50], [75, 55],
+        [35, 70], [50, 65], [65, 70],
+        [45, 82], [55, 82]
+      ].map(([x, y], i) => (
+        <ellipse key={i} cx={x} cy={y} rx="1" ry="2" transform={`rotate(${(x-50)*0.5}, ${x}, ${y})`} />
+      ))}
     </g>
-    <ellipse cx="25" cy="55" rx="6" ry="3" fill="#FFB6C1" opacity="0.7" />
-    <ellipse cx="75" cy="55" rx="6" ry="3" fill="#FFB6C1" opacity="0.7" />
-    <path d="M44 60Q50 68 56 60" fill="none" stroke="black" strokeWidth="3" strokeLinecap="round" />
+    <AnimeFace eyeY={45} smileY={62} />
   </svg>
 );
 
 export const MascotCorn = ({ className = "" }) => (
   <svg viewBox="0 0 100 100" className={`w-full h-full drop-shadow-xl ${className}`}>
     <defs>
-      <radialGradient id="cornGrad" cx="50%" cy="50%" r="50%" fx="40%" fy="40%">
-        <stop offset="0%" style={{ stopColor: "#FFEC8B" }} />
-        <stop offset="100%" style={{ stopColor: "#FFD700" }} />
-      </radialGradient>
+      <linearGradient id="cornGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style={{ stopColor: "#FFD700" }} />
+        <stop offset="50%" style={{ stopColor: "#FFEC8B" }} />
+        <stop offset="100%" style={{ stopColor: "#DAA520" }} />
+      </linearGradient>
     </defs>
-    <path d="M30 30Q15 50 30 90" fill="none" stroke="#4A6E4F" strokeWidth="6" strokeLinecap="round" />
-    <path d="M70 30Q85 50 70 90" fill="none" stroke="#4A6E4F" strokeWidth="6" strokeLinecap="round" />
-    <rect x="35" y="20" width="30" height="65" rx="15" fill="url(#cornGrad)" />
-    <g>
-      <circle cx="42" cy="40" r="7.5" fill="black" />
-      <circle cx="44" cy="38" r="3" fill="white" />
-      <circle cx="41" cy="43" r="1.2" fill="white" />
+    {/* Detailed Husks (Green leaves) */}
+    <path d="M50 95C30 95 15 70 20 20C25 40 35 90 50 95Z" fill="#4A6E4F" />
+    <path d="M50 95C70 95 85 70 80 20C75 40 65 90 50 95Z" fill="#3D5B42" />
+
+    {/* Corn Ear (Kernels) */}
+    <rect x="35" y="25" width="30" height="65" rx="15" fill="url(#cornGrad)" />
+
+    {/* Kernel Grid Detail */}
+    <g stroke="#DAA520" strokeWidth="0.2" opacity="0.4">
+      {Array.from({ length: 8 }).map((_, row) => (
+        <line key={row} x1="35" y1={30 + row * 8} x2="65" y2={30 + row * 8} />
+      ))}
+      {Array.from({ length: 4 }).map((_, col) => (
+        <line key={col} x1={38 + col * 8} y1="25" x2={38 + col * 8} y2="90" />
+      ))}
     </g>
-    <g>
-      <circle cx="58" cy="40" r="7.5" fill="black" />
-      <circle cx="60" cy="38" r="3" fill="white" />
-      <circle cx="57" cy="43" r="1.2" fill="white" />
+
+    {/* Tassels/Silk */}
+    <g stroke="#EEDD82" strokeWidth="0.5" opacity="0.6">
+      <path d="M45 25Q50 10 55 25" fill="none" />
+      <path d="M48 25Q50 15 52 25" fill="none" />
     </g>
-    <path d="M46 52Q50 58 54 52" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" />
-    <circle cx="38" cy="50" r="3" fill="#FFB6C1" opacity="0.7" />
-    <circle cx="62" cy="50" r="3" fill="#FFB6C1" opacity="0.7" />
+
+    <AnimeFace eyeY={48} eyeSize={7} smileY={65} smileW={10} />
   </svg>
 );
 
 export const MascotMango = ({ className = "" }) => (
   <svg viewBox="0 0 100 100" className={`w-full h-full drop-shadow-xl ${className}`}>
     <defs>
-      <radialGradient id="mangoGrad" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+      <linearGradient id="mangoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" style={{ stopColor: "#FFD200" }} />
-        <stop offset="100%" style={{ stopColor: "#FF8C00" }} />
-      </radialGradient>
+        <stop offset="40%" style={{ stopColor: "#FF8C00" }} />
+        <stop offset="100%" style={{ stopColor: "#E31E24" }} />
+      </linearGradient>
     </defs>
-    <path d="M50 85C80 85 90 60 90 40C90 20 70 10 50 10C30 10 10 20 10 40C10 60 20 85 50 85Z" fill="url(#mangoGrad)" />
-    <path d="M50 10C55 2 65 5 60 15Q55 20 50 15" fill="#4A6E4F" />
-    <g>
-      <circle cx="38" cy="40" r="8" fill="black" />
-      <circle cx="40" cy="37" r="3" fill="white" />
-      <circle cx="36" cy="42" r="1.2" fill="white" />
-    </g>
-    <g>
-      <circle cx="62" cy="40" r="8" fill="black" />
-      <circle cx="64" cy="37" r="3" fill="white" />
-      <circle cx="60" cy="42" r="1.2" fill="white" />
-    </g>
-    <ellipse cx="28" cy="50" rx="5" ry="2.5" fill="#FFB6C1" opacity="0.7" />
-    <ellipse cx="72" cy="50" rx="5" ry="2.5" fill="#FFB6C1" opacity="0.7" />
-    <path d="M44 58Q50 65 56 58" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" />
+    {/* Botanical Kidney Shape */}
+    <path
+      d="M50 15C75 15 90 35 90 55C90 80 65 90 45 90C25 90 10 75 10 50C10 25 30 15 50 15Z"
+      fill="url(#mangoGrad)"
+    />
+    {/* Stem & Leaf */}
+    <path d="M50 15C50 5 55 5 55 10" stroke="#4A3728" strokeWidth="3" fill="none" />
+    <path d="M55 10Q70 0 80 15" fill="#2D4B32" />
+
+    <AnimeFace eyeX={38} eyeY={45} smileY={62} />
   </svg>
 );
 
 export const MascotPineapple = ({ className = "" }) => (
   <svg viewBox="0 0 100 100" className={`w-full h-full drop-shadow-xl ${className}`}>
     <defs>
-      <radialGradient id="pineGrad" cx="50%" cy="50%" r="50%" fx="40%" fy="40%">
+      <radialGradient id="pineGrad" cx="50%" cy="50%" r="50%">
         <stop offset="0%" style={{ stopColor: "#FFF275" }} />
-        <stop offset="100%" style={{ stopColor: "#F5C300" }} />
+        <stop offset="100%" style={{ stopColor: "#DAA520" }} />
       </radialGradient>
     </defs>
-    {/* Crown */}
-    <path d="M35 30L50 5L65 30" fill="#2D4B32" />
-    <path d="M42 30L50 12L58 30" fill="#4A6E4F" />
-    {/* Body */}
-    <rect x="30" y="30" width="40" height="55" rx="15" fill="url(#pineGrad)" />
-    {/* Crosshatch pattern */}
-    <path d="M35 45L65 45M35 60L65 60M35 75L65 75M45 35L45 80M55 35L55 80" stroke="#DAA520" strokeWidth="0.5" opacity="0.4" />
-    <g>
-      <circle cx="42" cy="50" r="7" fill="black" />
-      <circle cx="44" cy="48" r="2.5" fill="white" />
+
+    {/* Botanical Crown (Layered Leaves) */}
+    <g fill="#2D4B32">
+      <path d="M50 35L35 10C40 15 45 15 50 25Z" />
+      <path d="M50 35L65 10C60 15 55 15 50 25Z" />
+      <path d="M50 35L50 5C45 15 55 15 50 25Z" />
+      <path d="M50 35L25 20C35 25 40 25 50 30Z" />
+      <path d="M50 35L75 20C65 25 60 25 50 30Z" />
     </g>
-    <g>
-      <circle cx="58" cy="50" r="7" fill="black" />
-      <circle cx="60" cy="48" r="2.5" fill="white" />
+
+    {/* Pineapple Body - Oval with scales */}
+    <path d="M30 35C30 30 70 30 70 35L75 75C75 85 25 85 25 75Z" fill="url(#pineGrad)" />
+
+    {/* Scales/Hexagon Detail */}
+    <g stroke="#8B4513" strokeWidth="0.5" opacity="0.2" fill="none">
+       {/* Diamond pattern */}
+       <path d="M30 45L70 45M30 55L70 55M30 65L70 65M30 75L70 75" />
+       <path d="M40 35L30 80M50 35L40 80M60 35L50 80M70 35L60 80" />
+       <path d="M40 35L50 80M30 35L40 80M60 35L70 80" />
     </g>
-    <circle cx="36" cy="60" r="2.5" fill="#FFB6C1" opacity="0.7" />
-    <circle cx="64" cy="60" r="2.5" fill="#FFB6C1" opacity="0.7" />
-    <path d="M46 65Q50 72 54 65" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" />
+
+    <AnimeFace eyeY={55} eyeSize={7} smileY={72} smileW={10} />
   </svg>
 );

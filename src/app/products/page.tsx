@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { products } from "./data";
 import { MascotStrawberry, MascotCorn, MascotMango, MascotPineapple } from "@/components/MascotLibrary";
 
-const MascotMap: Record<string, any> = {
+const MascotMap: Record<string, React.FC<{ className?: string }>> = {
   strawberry: MascotStrawberry,
   corn: MascotCorn,
   mango: MascotMango,
@@ -59,8 +59,8 @@ export default function ProductsPage() {
         </motion.div>
       </div>
 
-      <section className="container mx-auto px-6 py-24 relative z-10">
-        <div className="flex flex-col items-center mb-20">
+      <section className="container mx-auto px-6 py-12 md:py-16 relative z-10">
+        <div className="flex flex-col items-center mb-12 md:mb-16">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 0.6, y: 0 }}
@@ -71,14 +71,14 @@ export default function ProductsPage() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif text-center uppercase text-vintage-brown"
+            className="text-5xl md:text-6xl font-serif text-center uppercase text-vintage-brown"
           >
             Our Products
           </motion.h2>
-          <div className="w-24 h-[1px] bg-vintage-brown mt-8 opacity-20" />
+          <div className="w-24 h-[1px] bg-vintage-brown mt-6 opacity-20" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 md:gap-x-12 md:gap-y-16">
           {products.map((product, i) => {
             const MascotComp = MascotMap[product.id] || MascotMap.strawberry;
             const isHovered = hoveredProduct === product.id;
@@ -128,9 +128,9 @@ export default function ProductsPage() {
                   </motion.div>
                 </div>
 
-                <div className="bg-white/40 p-8 border border-vintage-brown/10 hover:border-vintage-green/30 transition-colors shadow-sm backdrop-blur-sm">
+                <div className="bg-white/40 p-6 md:p-8 border border-vintage-brown/10 hover:border-vintage-green/30 transition-colors shadow-sm backdrop-blur-sm">
                   <Link href={`/products/${product.id}`} className="group block">
-                    <div className={`aspect-video ${product.bgLight} mb-8 relative border border-vintage-brown/5 overflow-hidden shadow-inner`}>
+                    <div className={`aspect-video ${product.bgLight} mb-6 md:mb-8 relative border border-vintage-brown/5 overflow-hidden shadow-inner`}>
                       <div className="absolute inset-0 flex items-center justify-center p-12">
                          <div className="w-full h-full border border-vintage-green/5 flex flex-col items-center justify-center text-center group-hover:scale-105 transition-transform duration-700">
                             <h3 className={`font-serif text-4xl md:text-5xl italic ${product.color} mb-2`}>{product.name}</h3>

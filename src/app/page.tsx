@@ -47,9 +47,9 @@ export default function Home() {
       </section>
 
       {/* Philosophy Section */}
-      <section className="bg-[#2D4B32] text-[#F5F5DC] py-32 relative overflow-hidden">
+      <section className="bg-vintage-green/5 text-vintage-brown py-32 relative overflow-hidden">
         {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-vintage-beige/10" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-vintage-green/5" />
 
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
           <motion.div
@@ -59,20 +59,20 @@ export default function Home() {
             transition={{ duration: 1 }}
             className="relative"
           >
-            <div className="aspect-[3/4] relative border border-vintage-beige/30 p-4 bg-white/5 backdrop-blur-sm">
-               <div className="w-full h-full border border-vintage-beige/20 flex flex-col items-center justify-center p-12 text-center">
-                  <div className="w-24 h-24 border-2 border-vintage-beige/40 rounded-full mb-8 flex items-center justify-center">
-                    <span className="font-serif text-4xl">K</span>
+            <div className="aspect-[3/4] relative border border-vintage-green/30 p-4 bg-white/5 backdrop-blur-sm">
+               <div className="w-full h-full border border-vintage-green/20 flex flex-col items-center justify-center p-12 text-center">
+                  <div className="w-24 h-24 border-2 border-vintage-green/60 rounded-full mb-8 flex items-center justify-center">
+                    <span className="font-serif text-4xl text-vintage-green font-bold">K</span>
                   </div>
-                  <h4 className="font-serif text-2xl italic mb-4">The Vintage Standard</h4>
-                  <p className="text-xs uppercase tracking-widest opacity-60 leading-loose">
+                  <h4 className="font-serif text-2xl italic mb-4 text-vintage-green font-bold">The Vintage Standard</h4>
+                  <p className="text-xs uppercase tracking-widest opacity-90 font-bold leading-loose">
                     Inspired by the honest production methods of the early 20th century. Before the age of synthetic additives.
                   </p>
                </div>
             </div>
             {/* Stamp-like element */}
-            <div className="absolute -bottom-10 -right-10 w-40 h-40 border-4 border-vintage-beige/20 rounded-full flex items-center justify-center rotate-12">
-              <span className="text-[10px] uppercase font-bold tracking-tighter text-center opacity-40">Guaranteed Pure<br/>No Chemicals<br/>Est. 2024</span>
+            <div className="absolute -bottom-10 -right-10 w-40 h-40 border-4 border-vintage-green/20 rounded-full flex items-center justify-center rotate-12">
+              <span className="text-[10px] uppercase font-bold tracking-tighter text-center opacity-40 text-vintage-green">Guaranteed Pure<br/>No Chemicals<br/>Est. 2024</span>
             </div>
           </motion.div>
 
@@ -82,9 +82,9 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="text-xs uppercase tracking-[0.5em] mb-6 block opacity-70">Our Philosophy</span>
-            <h3 className="text-4xl md:text-6xl font-serif mb-8 uppercase leading-none">Nature's Time,<br/>Honored.</h3>
-            <p className="text-lg md:text-xl mb-10 opacity-90 leading-relaxed font-serif italic">
+            <span className="text-xs uppercase tracking-[0.5em] mb-6 block opacity-80 font-bold text-vintage-brown">Our Philosophy</span>
+            <h3 className="text-4xl md:text-6xl font-serif mb-8 uppercase leading-none text-vintage-brown font-bold">Nature's Time,<br/>Honored.</h3>
+            <p className="text-lg md:text-xl mb-10 opacity-100 leading-relaxed font-serif italic font-bold text-vintage-brown">
               "We don't add. We preserve. By harvesting at the peak of ripeness and using advanced freeze-drying, we lock in nature's perfection."
             </p>
             <div className="space-y-6">
@@ -94,10 +94,10 @@ export default function Home() {
                 { title: "B2B Excellence", desc: "Scalable purity for your high-end products." }
               ].map((item, i) => (
                 <div key={i} className="flex gap-6">
-                  <div className="text-vintage-beige/40 font-serif text-2xl">0{i+1}</div>
+                  <div className="text-vintage-brown/40 font-serif text-2xl">0{i+1}</div>
                   <div>
-                    <h5 className="font-bold uppercase tracking-widest text-sm mb-1">{item.title}</h5>
-                    <p className="text-xs opacity-60 uppercase tracking-wider">{item.desc}</p>
+                    <h5 className="font-bold uppercase tracking-widest text-sm mb-1 text-vintage-brown">{item.title}</h5>
+                    <p className="text-xs opacity-70 uppercase tracking-wider text-vintage-brown font-bold">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -152,7 +152,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#E8E2D2] py-20 border-t border-vintage-green/10">
+      <footer className="bg-vintage-paper py-20 border-t border-vintage-green/10">
         <div className="container mx-auto px-6 flex flex-col items-center">
           <div className="mb-12 text-center">
             <h2 className="font-serif text-4xl text-vintage-green mb-2 uppercase tracking-tighter">Krunshe</h2>
